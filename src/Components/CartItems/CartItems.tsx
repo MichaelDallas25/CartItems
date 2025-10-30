@@ -1,6 +1,8 @@
 import { ArrowDown, ArrowUp } from "lucide-react";
 import { useCart } from "../UseContext/CartContext";
 
+
+
 function CartItems() {
   const { cartItems, loading, total, removeItem, increment, decrement, clearCart } = useCart();
 

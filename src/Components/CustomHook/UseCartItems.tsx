@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import type { CartItem } from "../../Types/types";
+import type { CartItem } from "../CustomHook/types";
 import cartItemsData from "../../Dados/data";
 
 function UseCartItems() {

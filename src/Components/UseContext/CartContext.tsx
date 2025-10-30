@@ -1,7 +1,8 @@
 import { createContext, useContext, useMemo, useState, useEffect } from "react";
 import type { ReactNode } from "react";
-import type { CartContextType, CartItem } from "../../Types/types";
 import UseCartItems from "../CustomHook/UseCartItems";
+import type { CartItem } from "../CustomHook/types";
+import type { CartContextType } from "./types";
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 

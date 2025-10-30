@@ -1,10 +1,5 @@
-export interface CartItem {
-  id: number | string;
-  title: string;
-  price: number | string;
-  img: string;
-  amount: number;
-}
+import type { CartItem } from "../CustomHook/types";
+
 
 export interface CartContextType {
   cartItems: CartItem[];
