@@ -19,7 +19,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const clearCart = () => setCartItems([]);
-
+  //Esta funcao incrementa o item
   const increment = (id: number | string) => {
     setCartItems(prev =>
       prev.map(item =>
