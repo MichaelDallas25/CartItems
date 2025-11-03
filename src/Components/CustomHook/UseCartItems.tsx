@@ -4,6 +4,7 @@ import cartItemsData from "../../Dados/data";
 
 function UseCartItems() {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  //const [loading, setLoading] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
