@@ -1,7 +1,7 @@
-export interface CartItemZustand {
+export interface CartItem {
   id: number | string;
   title: string;
-  price: number | string;
+  price: number;
   img: string;
   amount: number;
 }

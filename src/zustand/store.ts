@@ -1,24 +1,29 @@
 import { create } from "zustand";
-import type { CartItemZustand } from './types'
+import type { CartItem } from './types'
+import CartItems from '../Components/CartItems/CartItems';
 
 interface CartState {
-  cartItems: CartItemZustand[];
+  cartItems: CartItem[];
+   total: number;
   totalItems: number;
   increment: (id: number | string) => void;
   decrement: (id: number | string) => void;
-  setCartItems: (items: CartItemZustand[]) => void;
+  setCartItems: (items: CartItem[]) => void;
   getAmount: (id: number | string) => number;
   clearCart: () => void;
+  getTotal: () => void;
+ 
 }
 
-const useCartZustand = create<CartState>((set, get) => ({
+const useCart = create<CartState>((set, get) => ({
   cartItems: [],
+   total:0,
   totalItems: 0,
+ 
+  
 
-  setCartItems: (items) => set({ 
-    cartItems: items, 
-    totalItems: items.reduce((sum, item) => sum + item.amount, 0)
-  }),
+
+
 
   increment: (id) =>
     set((state) => {
@@ -49,6 +54,12 @@ const useCartZustand = create<CartState>((set, get) => ({
   },
 
   clearCart: () => set({ cartItems: [], totalItems: 0 }),
+
+ getTotal: () => set((state)=> {
+    const total= state.cartItems.reduce((acc:number,item:CartItem)=> acc + item.price * item.amount,0 );
+    return {...state, total}
+ })
+
 }));
 
-export default useCartZustand;
+export default useCart;

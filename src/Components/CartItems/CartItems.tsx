@@ -1,5 +1,5 @@
 import { ArrowDown, ArrowUp } from "lucide-react";
-import useCartZustand from "../../zustand/store";
+import useCart from "../../zustand/store";
 import { useEffect } from "react";
 import UseCartItems from "../CustomHook/UseCartItems";
 
@@ -9,7 +9,7 @@ function CartItems() {
   //if (cartItems.length === 0){
   // return <p className="text-center text-gray-600 mt-10">Seu carrinho está vazio</p>;}
 
-  const { cartItems, increment, decrement, setCartItems } = useCartZustand();
+  const { cartItems, increment, decrement, setCartItems } = useCart();
   const { cartItems: initialItems, loading, } = UseCartItems();
 
   // Inicializa os itens do carrinho
