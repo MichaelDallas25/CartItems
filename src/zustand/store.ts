@@ -11,6 +11,7 @@ interface CartState {
   setCartItems: (items: CartItem[]) => void;
   getAmount: (id: number | string) => number;
   clearCart: () => void;
+  removeItem: (id: number | string) => void;
 }
 
 const useCart = create<CartState>((set, get) => ({
@@ -63,6 +64,20 @@ const useCart = create<CartState>((set, get) => ({
   },
 
   clearCart: () => set({ cartItems: [], totalItems: 0 }),
+
+  removeItem: (id) => {
+    set((state) => {
+      const updated = state.cartItems.filter((item) => item.id !== id);
+
+      const totalItems = updated.reduce((acc, item) => acc + item.amount, 0);
+      const totalAmount = updated.reduce(
+        (acc, item) => acc + item.price * item.amount,
+        0
+      );
+
+      return { cartItems: updated, totalItems, totalAmount };
+    });
+  },
 }));
 
 export default useCart;
