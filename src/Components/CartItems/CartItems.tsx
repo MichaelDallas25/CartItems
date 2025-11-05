@@ -9,7 +9,7 @@ function CartItems() {
   //if (cartItems.length === 0){
   // return <p className="text-center text-gray-600 mt-10">Seu carrinho está vazio</p>;}
 
-  const { cartItems, increment, decrement, setCartItems} = useCart();
+  const { cartItems, increment, decrement, setCartItems,totalAmount} = useCart();
   const { cartItems: initialItems, loading, } = UseCartItems();
 
 
@@ -63,7 +63,7 @@ function CartItems() {
 
       <footer className="flex flex-col items-center space-y-6">
         <div className="w-full flex justify-between items-center text-lg font-medium">
-          <span className="text-gray-700">Total</span>
+          <span className="text-gray-700">Total : €{totalAmount.toFixed(2)}</span>
           <span className="text-2xl font-semibold text-blue-700"></span>
         </div>
 
