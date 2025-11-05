@@ -6,6 +6,7 @@ import CartItems from "../Components/CartItems/CartItems";
 interface CartState {
   cartItems: CartItem[];
   totalItems: number;
+  totalAmount: number;
   increment: (id: number | string) => void;
   decrement: (id: number | string) => void;
   setCartItems: (items: CartItem[]) => void;
@@ -17,13 +18,20 @@ interface CartState {
 const useCart = create<CartState>((set, get) => ({
   cartItems: [],
   totalItems: 0,
+  totalAmount:0,
 
 
-  setCartItems: (items) => 
-    set(()=> ({
-      cartItems:items,
-      totalItems:items.reduce((acc, item) => acc + item.amount,0),
-    })),
+
+
+  setCartItems: (items) => {
+    const totalItems = items.reduce((acc, item)=> acc + item.amount,0);
+    const totalAmount = items.reduce(
+      (acc, item) => acc + item.price * item.amount,
+      0
+    );
+    set({cartItems:items,totalItems,totalAmount});
+  },
+  
 
 
   increment: (id) =>
