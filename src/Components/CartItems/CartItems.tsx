@@ -9,8 +9,10 @@ function CartItems() {
   //if (cartItems.length === 0){
   // return <p className="text-center text-gray-600 mt-10">Seu carrinho está vazio</p>;}
 
-  const { cartItems, increment, decrement, setCartItems } = useCart();
+  const { cartItems, increment, decrement, setCartItems} = useCart();
   const { cartItems: initialItems, loading, } = UseCartItems();
+
+
 
   // Inicializa os itens do carrinho
   useEffect(() => {

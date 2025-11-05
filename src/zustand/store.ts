@@ -1,33 +1,34 @@
 import { create } from "zustand";
-import type { CartItem } from './types'
-import CartItems from '../Components/CartItems/CartItems';
+import type { CartItem } from "./types";
+import CartItems from "../Components/CartItems/CartItems";
+
 
 interface CartState {
   cartItems: CartItem[];
-   total: number;
   totalItems: number;
   increment: (id: number | string) => void;
   decrement: (id: number | string) => void;
   setCartItems: (items: CartItem[]) => void;
   getAmount: (id: number | string) => number;
   clearCart: () => void;
-  getTotal: () => void;
  
 }
 
 const useCart = create<CartState>((set, get) => ({
   cartItems: [],
-   total:0,
   totalItems: 0,
- 
-  
 
 
+  setCartItems: (items) => 
+    set(()=> ({
+      cartItems:items,
+      totalItems:items.reduce((acc, item) => acc + item.amount,0),
+    })),
 
 
   increment: (id) =>
     set((state) => {
-      const updated = state.cartItems.map(item =>
+      const updated = state.cartItems.map((item) =>
         item.id === id ? { ...item, amount: item.amount + 1 } : item
       );
       return { cartItems: updated, totalItems: state.totalItems + 1 };
@@ -37,29 +38,25 @@ const useCart = create<CartState>((set, get) => ({
     set((state) => {
       let totalItems = state.totalItems;
       const updated = state.cartItems
-        .map(item => {
+        .map((item) => {
           if (item.id === id) {
             totalItems -= 1;
             return { ...item, amount: item.amount - 1 };
           }
           return item;
         })
-        .filter(item => item.amount > 0);
+        .filter((item) => item.amount > 0);
       return { cartItems: updated, totalItems };
     }),
 
   getAmount: (id) => {
-    const item = get().cartItems.find(item => item.id === id);
+    const item = get().cartItems.find((item) => item.id === id);
     return item ? item.amount : 0;
   },
 
   clearCart: () => set({ cartItems: [], totalItems: 0 }),
 
- getTotal: () => set((state)=> {
-    const total= state.cartItems.reduce((acc:number,item:CartItem)=> acc + item.price * item.amount,0 );
-    return {...state, total}
- })
-
+ 
 }));
 
 export default useCart;

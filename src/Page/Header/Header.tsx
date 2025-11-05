@@ -6,7 +6,7 @@ const Header = () => {
 
   return (
     <header className="bg-violet-700 text-white p-4 flex justify-between items-center shadow-lg">
-      <h1 className="text-2xl font-semibold">UseContext</h1>
+      <h1 className="text-2xl font-semibold">Zustand</h1>
       <div className="relative cursor-pointer">
         <ShoppingCart className="text-3xl" />
         {totalItems > 0 && (
